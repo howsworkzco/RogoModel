@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1r2m3n4"]
+
+[ext_resource type="Script" path="res://src/NetworkManager.cs" id="1_net"]
+
+[node name="WorldRoot" type="Node3D"]
+script = ExtResource("1_net")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 15, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 6, 12)
