@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandbox Platform Dashboard</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f4f9; padding: 30px; color: #333; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); max-width: 500px; margin-bottom: 20px; }
+        h1 { margin-top: 0; color: #1e1e24; }
+        button { background: #0070f3; color: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; }
+        button:hover { background: #0051a8; }
+        pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Sandbox Map Panel</h1>
+        <p>Current Map Loaded: <strong id="map-name">Loading...</strong></p>
+        <button onclick="fetchMapData()">Refresh Map Data</button>
+        <button onclick="createNewMap()" style="background: #10b981;">Create Random Map</button>
+    </div>
+
+    <div class="card" style="max-width: 700px;">
+        <h3>Raw JSON Database Output</h3>
+        <pre id="json-output">Click a button to read from API...</pre>
+    </div>
+
+    <script>
+        // Automatically fetch the map data when the webpage loads
+        async function fetchMapData() {
+            try {
+                const response = await fetch('/api/maps/1');
+                const data = await response.json();
+                document.getElementById('map-name').innerText = data.MapName;
+                document.getElementById('json-output').innerText = JSON.stringify(data, null, 2);
+            } catch (err) {
+                document.getElementById('json-output').innerText = "Error linking to backend server.";
+            }
+        }
+
+        // Post a completely new map to your API
+        async function createNewMap() {
+            const randomId = Math.floor(Math.random() * 1000);
+            const mockMap = {
+                "MapName": "User Generated Map #" + randomId,
+                "CreatorID": randomId,
+                "Workspace": [
+                    { "Type": "Sphere", "Position": {"X": 5, "Y": 5, "Z": 5}, "Scale": {"X": 1, "Y": 1, "Z": 1}, "Color": "#00FF00" }
+                ]
+            };
+
+            const response = await fetch('/api/maps/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(mockMap)
+            });
+            const result = await response.json();
+            
+            if(result.success) {
+                alert("Success! Created a new map database block with ID: " + result.mapId);
+                // Load our newly created map data instantly into the viewer
+                const getNewMap = await fetch('/api/maps/' + result.mapId);
+                const newData = await getNewMap.json();
+                document.getElementById('map-name').innerText = newData.MapName;
+                document.getElementById('json-output').innerText = JSON.stringify(newData, null, 2);
+            }
+        }
+
+        fetchMapData();
+    </script>
+</body>
+</html>
