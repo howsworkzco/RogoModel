@@ -6,6 +6,17 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
+// A database array to host custom game components and textures
+const assetRegistry = {
+    "mesh_102": { "url": "https://rogomodel.com" },
+    "shirt_504": { "url": "https://rogomodel.com" }
+};
+
+app.get('/api/assets/:id', (req, res) => {
+    const asset = assetRegistry[req.params.id];
+    if (!asset) return res.status(404).json({ error: "Asset missing" });
+    res.json(asset);
+});
 
 // A simple in-memory map database for testing
 const mapDatabase = {

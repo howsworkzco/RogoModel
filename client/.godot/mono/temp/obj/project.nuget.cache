@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "nQM9rPMPb/I=",
+  "success": true,
+  "projectFilePath": "/workspaces/RogoModel/client/RogoModel.csproj",
+  "expectedPackageFiles": [
+    "/home/codespace/.nuget/packages/godot.sourcegenerators/4.3.0/godot.sourcegenerators.4.3.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/godotsharp/4.3.0/godotsharp.4.3.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/godotsharpeditor/4.3.0/godotsharpeditor.4.3.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/keralua/1.4.1/keralua.1.4.1.nupkg.sha512",
+    "/home/codespace/.nuget/packages/nlua/1.7.3/nlua.1.7.3.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.netcore.app.ref/8.0.25/microsoft.netcore.app.ref.8.0.25.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.25/microsoft.aspnetcore.app.ref.8.0.25.nupkg.sha512"
+  ],
+  "logs": []
+}
