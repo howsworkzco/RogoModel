@@ -15,12 +15,16 @@
 </head>
 <body>
 
-    <div class="card">
-        <h1>Sandbox Map Panel</h1>
-        <p>Current Map Loaded: <strong id="map-name">Loading...</strong></p>
-        <button onclick="fetchMapData()">Refresh Map Data</button>
-        <button onclick="createNewMap()" style="background: #10b981;">Create Random Map</button>
-    </div>
+    <!-- Inside the .card div in index.html -->
+<div class="card">
+    <h1>Sandbox Map Panel</h1>
+    <p>Current Map Loaded: <strong id="map-name">Loading...</strong></p>
+    <button onclick="fetchMapData()">Refresh Map Data</button>
+    <button onclick="createNewMap()" style="background: #10b981;">Create Random Map</button>
+    
+    <!-- NEW APPLICATION LAUNCH BUTTON -->
+    <button onclick="launchRogoModelApp()" style="background: #e11d48; margin-left: 10px;">▶ Play in Desktop App</button>
+</div>
 
     <div class="card" style="max-width: 700px;">
         <h3>Raw JSON Database Output</h3>
@@ -28,7 +32,21 @@
     </div>
 
     <script>
-        // Automatically fetch the map data when the webpage loads
+        // NEW DEEP LINK LAUNCHER FUNCTION
+function launchRogoModelApp() {
+    // 1. Get the ID of the map currently displayed on your screen
+    const currentMapId = 1; 
+    
+    // 2. Format your custom protocol URI scheme, passing the database information
+    const appUri = "rogomodel://launch?mapId=" + currentMapId + "&server=http://localhost:3000";
+    
+    console.log("Redirecting system to launch app protocol: ", appUri);
+    
+    // 3. Force the operating system to intercept the custom link
+    window.location.href = appUri;
+}
+
+// Automatically fetch the map data when the webpage loads
         async function fetchMapData() {
             try {
                 const response = await fetch('/api/maps/1');
