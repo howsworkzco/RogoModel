@@ -1,0 +1,35 @@
+{
+  "Classes": {
+    "Instance": {
+      "BaseClass": "",
+      "Properties": {
+        "Name": "String",
+        "Parent": "Instance"
+      }
+    },
+    "Part": {
+      "BaseClass": "Instance",
+      "Properties": {
+        "Position": "Vector3",
+        "Size": "Vector3",
+        "Color": "Color3"
+      }
+    },
+    "Folder": {
+      "BaseClass": "Instance",
+      "Properties": {}
+    },
+    "Script": {
+      "BaseClass": "Instance",
+      "Properties": {
+        "Source": "String"
+      }
+    },
+    "WedgePart": {
+      "BaseClass": "Part",
+      "Properties": {
+        "SlopeAngle": "Float"
+      }
+    }
+  }
+}
