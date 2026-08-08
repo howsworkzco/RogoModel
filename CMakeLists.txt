@@ -56,3 +56,9 @@ target_link_libraries(${PROJECT_NAME}
 set_target_properties(${PROJECT_NAME} PROPERTIES
     VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
 )
+# Copy Reflection.json to the build folder automatically on every build
+configure_file(
+    "${CMAKE_SOURCE_DIR}/Reflection.json"
+    "${CMAKE_BINARY_DIR}/Reflection.json"
+    COPYONLY
+)
